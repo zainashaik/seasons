@@ -13,8 +13,8 @@ const oxygen = Oxygen({
 });
 
 export const metadata: Metadata = {
-  title: "Cute Outfit Stylist",
-  description: "Generate cute outfit ideas for any outfit!",
+  title: "Seasons",
+  description: "Generate cute & sustainable outfit ideas for any outfit depending on the season!",
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',

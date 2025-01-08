@@ -16,27 +16,15 @@ export default function Home() {
           background: `
             radial-gradient(
               circle at center,
-              #EAEAEA 0%,
-              #C285A9 15%,
-              #893168 30%,
-              #4A1942 50%,
-              #2E1C2B 70%,
-              #050404 100%
+              #FFFFFF 0%,
+              #E9C8E7 15%,
+              #E1AFD1 30%,
+              #AD88C6 50%,
+              #7469B6 70%,
+              #7469B6 100%
             )
           `,
-          maskImage: `radial-gradient(
-            circle at center,
-            #000 0%,
-            #000 50%,
-            transparent 70%
-          )`,
-          WebkitMaskImage: `radial-gradient(
-            circle at center,
-            #000 0%,
-            #000 50%,
-            transparent 70%
-          )`,
-          transform: 'scale(1.5)',
+          transform: 'scale(1.3)',
         }}
       >
         {/* Add a subtle glow overlay */}
@@ -45,7 +33,7 @@ export default function Home() {
             background: `
               radial-gradient(
                 circle at center,
-                #EAEAEA 0%,
+                #FFFFFF 0%,
                 transparent 50%
               )
             `,
@@ -65,10 +53,22 @@ export default function Home() {
         />
       </div>*/}
 
+      {/* Logo Image */}
+      <div className="absolute top-4 left-4 md:top-8 md:left-8 z-20 h-[72px] md:h-[86px]">
+        <Image
+          src="/seasonsbow.png"
+          alt="Seasons logo"
+          width={72}
+          height={72}
+          className="opacity-90 hover:opacity-100 transition-opacity duration-300 h-full w-auto"
+          priority
+        />
+      </div>
+
       {/* Content */}
       <main className="container mx-auto p-4 md:p-8 flex flex-col gap-6 relative z-10">
         <h1 className={`text-5xl md:text-6xl font-bold text-center text-[#EAEAEA] ${satisfy.className}`}>
-          Cute Outfit Stylist
+          Seasons
         </h1>
 
         <div className="flex-1 mb-4 md:mb-6">

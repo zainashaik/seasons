@@ -1,7 +1,7 @@
-# Cute Outfit Stylist
+# Seasons
 
-This is a cute outfit stylist chatbot that generates cute outfit ideas for any outfit! Try it out here: https://cuteoutfitstylist.vercel.app/
-Here is a demo video: https://youtu.be/OwIMGtXsibc
+This is a chatbot that generates cute & sustainable outfit ideas for any outfit depending on the season! Try it out here: to be added
+Here is a demo video: to be added
 
 ## Tools Used:
 - Next.js
@@ -15,7 +15,7 @@ Here is a demo video: https://youtu.be/OwIMGtXsibc
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/cute-outfit-stylist.git
+   git clone https://github.com/yourusername/seasons.git
    cd cute-outfit-stylist
    ```
 

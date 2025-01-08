@@ -48,10 +48,10 @@ export default function Chatbot() {
     };
   
     return (
-        <div className="bg-[#4A1942] rounded-lg shadow-lg p-6 h-[80vh] flex flex-col border-2 border-[#893168]">
+      <div className="bg-[#AD88C6] rounded-lg shadow-lg p-6 h-[80vh] flex flex-col border-2 border-[#7469B6]">
           <div className="flex-1 overflow-y-auto mb-4 space-y-4">
             {/* Welcome message */}
-            <div className="bg-[#2E1C2B] p-3 rounded-lg max-w-[80%] text-[#EAEAEA] border-l-4 border-[#893168]">
+            <div className="bg-[#7469B6] p-3 rounded-lg max-w-[80%] text-[#FFFFFF] border-l-4 border-[#E1AFD1]">
               Hi, I'm your personal cute outfit stylist! Describe an outfit, and I'll give you ideas on how to make it cuter :)
             </div>
     
@@ -61,9 +61,9 @@ export default function Chatbot() {
                 key={index} 
                 className={`${
                   msg.role === 'user' 
-                    ? 'ml-auto bg-[#893168] text-[#EAEAEA]' 
-                    : 'bg-[#2E1C2B] text-[#EAEAEA]'
-                } p-3 rounded-lg max-w-[80%] whitespace-pre-wrap border border-[#893168]/50`}
+                    ? 'ml-auto bg-[#E1AFD1] text-[#7469B6]' 
+                    : 'bg-[#7469B6] text-[#FFFFFF]'
+                } p-3 rounded-lg max-w-[80%] whitespace-pre-wrap border border-[#E1AFD1]/50`}
                 style={{ whiteSpace: 'pre-line' }}
               >
                 {msg.content}
@@ -83,20 +83,20 @@ export default function Chatbot() {
             <input
               type="text"
               placeholder="Describe an outfit..."
-              className="flex-1 p-2 rounded-lg border-2 border-[#893168] 
-                       bg-[#2E1C2B]
-                       text-[#EAEAEA]
-                       placeholder-[#EAEAEA]/50
-                       focus:outline-none focus:ring-2 focus:ring-[#893168]"
+              className="flex-1 p-2 rounded-lg border-2 border-[#7469B6] 
+                       bg-[#AD88C6]
+                       text-[#FFFFFF]
+                       placeholder-[#FFFFFF]/50
+                       focus:outline-none focus:ring-2 focus:ring-[#7469B6]"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               disabled={isLoading}
             />
             <button 
-              className="bg-[#893168] hover:bg-[#4A1942] text-[#EAEAEA] px-4 py-2 rounded-lg
-                         transition-colors disabled:opacity-50 border-2 border-[#893168]
-                         font-semibold shadow-md hover:shadow-lg"
+              className="bg-[#E1AFD1] hover:bg-[#7469B6] text-[#FFFFFF] px-4 py-2 rounded-lg
+                          transition-colors disabled:opacity-50 border-2 border-[#7469B6]
+                          font-semibold shadow-md hover:shadow-lg"
               onClick={handleSendMessage}
               disabled={isLoading}
             >
