@@ -16,8 +16,12 @@ export const metadata: Metadata = {
   title: "Seasons",
   description: "Generate cute & sustainable outfit ideas for any outfit depending on the season!",
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
+    icon: [
+      { url: './favicon.ico' },
+      { url: './favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+    ],
+    shortcut: './favicon.ico',
+    apple: { url: './apple-touch-icon.png', type: 'image/png' },
   },
 };
 
