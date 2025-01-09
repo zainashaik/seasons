@@ -71,6 +71,8 @@ export default function Home() {
           Seasons
         </h1>
 
+        {/* Season Buttons */}
+
         <div className="flex-1 mb-4 md:mb-6">
           <Chatbot />
         </div>

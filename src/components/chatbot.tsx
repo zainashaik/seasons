@@ -5,6 +5,15 @@ export default function Chatbot() {
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedSeason, setSelectedSeason] = useState<string>('spring');
+
+    const seasons = [
+      { id: 'spring', label: '🌸 Spring', color: '#E1AFD1' },
+      { id: 'summer', label: '☀️ Summer', color: '#FFE6E6' },
+      { id: 'fall', label: '🍂 Fall', color: '#AD88C6' },
+      { id: 'winter', label: '❄️ Winter', color: '#7469B6' },
+    ];
+
   
     const handleSendMessage = async () => {
       if (!input.trim() || isLoading) return;
@@ -20,7 +29,8 @@ export default function Chatbot() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userMessage: input // Make sure we're sending just the input text
+            userMessage: input, // Make sure we're sending just the input text
+            season: selectedSeason // Include the selected season
           }),
         });
   
@@ -49,10 +59,29 @@ export default function Chatbot() {
   
     return (
       <div className="bg-[#AD88C6] rounded-lg shadow-lg p-6 h-[80vh] flex flex-col border-2 border-[#7469B6]">
+          
+          {/* Season selector */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+            {seasons.map((season) => (
+              <button
+                key={season.id}
+                onClick={() => setSelectedSeason(season.id)}
+                className={`p-2 rounded-lg font-semibold transition-all duration-200 border-2
+                          ${selectedSeason === season.id 
+                            ? 'bg-[#7469B6] text-white border-[#E1AFD1]' 
+                            : 'bg-white/10 text-white border-[#7469B6] hover:bg-[#7469B6]/50'
+                          }
+                        `}
+              >
+                {season.label}
+              </button>
+            ))}
+          </div>
+          
           <div className="flex-1 overflow-y-auto mb-4 space-y-4">
             {/* Welcome message */}
             <div className="bg-[#7469B6] p-3 rounded-lg max-w-[80%] text-[#FFFFFF] border-l-4 border-[#E1AFD1]">
-              Hi, I'm your personal cute outfit stylist! Describe an outfit, and I'll give you ideas on how to make it cuter :)
+              Hi, I'm your sustainable {selectedSeason} outfit stylist! Describe an outfit, and I'll give you ideas on how to make it cuter for {selectedSeason} ✨
             </div>
     
             {/* Chat messages */}

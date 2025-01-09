@@ -8,12 +8,12 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  console.log('API route hit'); // Add logging
+  //console.log('API route hit'); // Add logging
 
   try {
     const body = await req.json();
-    console.log('Received body:', body); // Add logging
-    const { userMessage } = body;
+    //console.log('Received body:', body); // Add logging
+    const { userMessage, season } = body;
 
     if (!userMessage) {
       return NextResponse.json(
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log('Sending message to Mistral:', userMessage); // Debug log
+    //console.log('Sending message to Mistral:', userMessage); // Debug log
 
     const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
       method: 'POST',
@@ -35,7 +35,14 @@ export async function POST(req: NextRequest) {
         messages: [
           {
             role: 'system',
-            content: `You are a fashion stylist chatbot that provides cute outfit suggestions. The user will describe an outfit and you will provide 1-3 ideas on how to make it cuter!
+            content: `You are a sustainable fashion stylist chatbot specializing in ${season} outfits that provides cute outfit suggestions. The user will describe an outfit and you will provide 3 ideas on how to make it cuter!
+            
+                    When giving advice, consider:
+                    - ${season}-specific weather conditions
+                    - Seasonal colors and patterns
+                    - Layering appropriate for ${season}
+                    - Seasonal accessories
+                    - Sustainable fashion choices
 
                     Format each suggestion exactly like this, with each suggestion on a new line:
                     • [emoji] First suggestion
@@ -49,7 +56,7 @@ export async function POST(req: NextRequest) {
 
                     Choose a relevant emoji. Do not use the same emoji for multiple suggestions in the same response. If you can't find a relevant emoji, use one that contains the same color as the suggested item.
                     Make sure to start each suggestion on a new line.
-                    Keep each suggestion concise, creative,specific, relevant to the user's outfit, and include a relevant emoji.`
+                    Keep each suggestion concise, creative, specific, relevant to the user's outfit, and include a relevant emoji.`
           },
           { role: 'user', content: userMessage }
         ],
