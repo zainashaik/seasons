@@ -1,7 +1,6 @@
 # Seasons
 
-This is a chatbot that generates cute & sustainable outfit ideas for any outfit depending on the season! Try it out here: to be added
-Here is a demo video: to be added
+This is a chatbot that generates cute & sustainable outfit ideas for any outfit depending on the season! Try it out here: https://seasons-stylist.vercel.app/ 
 
 ## Tools Used:
 - Next.js
