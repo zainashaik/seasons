@@ -8,5 +8,5 @@ This is a chatbot that generates cute & sustainable outfit ideas for any outfit 
 - Tailwind CSS
 - React
 - Mistral AI API
+- Brave Search API
 - Vercel
-
