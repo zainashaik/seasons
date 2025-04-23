@@ -1,6 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY || '';
+const BRAVE_API_KEY = process.env.BRAVE_API_KEY || '';
+
+async function searchBrave(query: string) {
+  try {
+    const response = await fetch(`https://api.search.brave.com/res/v1/web/search?q=${encodeURIComponent(query)}`, {
+      headers: {
+        'Accept': 'application/json',
+        'X-Subscription-Token': BRAVE_API_KEY
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Brave search failed');
+    }
+
+    const data = await response.json();
+    // Extract and process the first 5 results, now including URLs
+    const searchResults = data.web.results.slice(0, 5).map((result: any) => ({
+      title: result.title,
+      description: result.description,
+      url: result.url
+    }));
+
+    return {
+      context: searchResults.map((r: { title: any; description: any; }) => `${r.title}\n${r.description}`).join('\n\n'),
+      links: searchResults // Return the full results including URLs
+    };
+  } catch (error) {
+    console.error('Brave search error:', error);
+    return {
+      context: '',
+      links: []
+    };
+  }
+}
 
 // Add a GET method to test the route
 export async function GET() {
@@ -24,6 +59,11 @@ export async function POST(req: NextRequest) {
 
     //console.log('Sending message to Mistral:', userMessage); // Debug log
 
+    // Get search results for the outfit
+    const { context: searchContext, links } = await searchBrave(
+      `${userMessage} outfit improvement ideas`
+    );
+
     const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -43,6 +83,7 @@ export async function POST(req: NextRequest) {
                     - Layering appropriate for ${season}
                     - Seasonal accessories
                     - Sustainable fashion choices
+                    - your own knowledge and the search results: ${searchContext}
 
                     Format each suggestion exactly like this, with each suggestion on a new line:
                     • [emoji] First suggestion
